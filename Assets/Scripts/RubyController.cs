@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class RubyController : MonoBehaviour
 {
