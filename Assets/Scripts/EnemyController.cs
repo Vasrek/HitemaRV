@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
 {
     public float speed;
     public bool vertical;
-    public float changeTime = 3.0f;
+    public float maxTimer = 3.0f;
 
     Rigidbody2D rigidbody2D;
     float timer;
@@ -21,8 +21,18 @@ public class EnemyController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         //timer = Random.Range(1.0f, 7.0f);
-        timer = changeTime;
+        timer = maxTimer;     
+    }
 
+    void Update()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            direction = -direction;
+            timer = maxTimer;
+        }
     }
 
     // Update is called once per frame
@@ -32,13 +42,23 @@ public class EnemyController : MonoBehaviour
 
         if (vertical)
         {
-            position.y = position.y + Time.deltaTime * speed;
+            position.y = position.y + Time.deltaTime * direction * speed;
         }
         else
         {
-            position.x = position.x + Time.deltaTime * speed;
+            position.x = position.x + Time.deltaTime * direction * speed;
         }
 
         rigidbody2D.MovePosition(position);
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        RubyController player = other.gameObject.GetComponent<RubyController>();
+
+        if (player != null)
+        {
+            player.ChangeHealth(-1);
+        }
     }
 }
