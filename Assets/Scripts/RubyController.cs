@@ -10,6 +10,7 @@ public class RubyController : MonoBehaviour
     public int maxHealth = 5;
     public float speed = 3.0f;
     public float timeInvincible = 2.0f;
+    public float force = 300.0f;
 
     public GameObject projectilePrefab;
 
@@ -96,7 +97,7 @@ public class RubyController : MonoBehaviour
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(lookDirection, 300);
+        projectile.Launch(lookDirection, force);
 
         animator.SetTrigger("Launch");
     }
