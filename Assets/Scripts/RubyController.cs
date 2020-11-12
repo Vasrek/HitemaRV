@@ -125,6 +125,5 @@ public class RubyController : MonoBehaviour
     public void PlaySound (AudioClip clip)
     {
         audioSource.PlayOneShot(clip, 0.2f);
-
     }
 }

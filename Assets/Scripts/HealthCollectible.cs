@@ -16,9 +16,8 @@ public class HealthCollectible : MonoBehaviour
             if (controller.health < controller.maxHealth) // SI RUBY A MOINS d'HP QUE SON MAXIMUM HP
             {
                 controller.ChangeHealth(1);
-                Destroy(gameObject);
-
                 controller.PlaySound(collectedClip);
+                Destroy(gameObject);
             }
         }
     }
